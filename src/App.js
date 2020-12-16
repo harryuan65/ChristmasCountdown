@@ -4,7 +4,8 @@ import TreeTopImg from "./images/colored-top-1.svg";
 import TreeMidImg from "./images/colored-mid-1.svg";
 import TreeBottomImg from "./images/colored-bottom-1.svg";
 import TreeLogImg from "./images/colored-log-1.svg";
-import { motion } from 'framer-motion';
+import CaneImg from "./images/crane.svg";
+import { motion } from "framer-motion";
 
 const Layout = styled(motion.div)`
   height: 100vh;
@@ -15,32 +16,52 @@ const Layout = styled(motion.div)`
 const TreeContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  div{
+    display: flex;
+    width: 100%;
+    min-height: 70px;
+    justify-content: center;
+    position: relative;
+  }
   img {
-    position: absolute;
     filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
   }
 `;
 const Star = styled(motion.img)`
-  top: 30px;
+  margin-top: 30px;
   z-index: ${(props) => props.zIndex};
 `;
-const TreeTop = styled(motion.img)`
-  top: 65px;
+const TreeTopContainer = styled(motion.div)`
+  top: -10px;
+  height: ${props => props.height}px;
   z-index: ${(props) => props.zIndex};
 `;
-const TreeMid = styled(motion.img)`
-  top: 155px;
+const TreeMidContainer = styled(motion.div)`
+  top: -55px;
+  height: ${props => props.height}px;
   z-index: ${(props) => props.zIndex};
 `;
-const TreeBottom = styled(motion.img)`
-  top: 260px;
+const TreeBottomContainer = styled(motion.div)`
+  top: -100px;
+  height: ${props => props.height}px;
   z-index: ${(props) => props.zIndex};
 `;
 const TreeLog = styled(motion.img)`
-  top: 360px;
+  position: relative;
+  top: -145px;
   z-index: ${(props) => props.zIndex};
+`;
+const BaseImage = styled.img`
+  position: relative;
+`;
+const Cane = styled(motion.img)`
+  position: absolute;
+  top: ${props => props.top}%;
+  left: ${(props) => props.left}%;
+  transform: rotate(${props => props.rotation}deg);
+  width: 20px;
 `;
 function App() {
   return (
@@ -51,49 +72,55 @@ function App() {
           zIndex={5}
           whileTap={{
             scale: 0.8,
-            transition: {duration: 0.1}
+            transition: { duration: 0.1 },
           }}
         />
-        <TreeTop
-          src={TreeTopImg}
+        <TreeTopContainer
           zIndex={4}
-          animate={{
-            rotate: [0, -4, 3, -2, 0],
-            transition: { ease: "easeInOut", duration: 9, loop: Infinity }
-          }}
+          // animate={{
+          //   rotate: [0, -3, 2, -2, 0],
+          //   transition: { ease: "easeInOut", duration: 9, loop: Infinity },
+          // }}
           whileTap={{
             scale: 0.8,
-            transition: {duration: 0.1}
+            transition: { duration: 0.1 },
           }}
-        />
-        <TreeMid
-          src={TreeMidImg}
+          height={135}
+        >
+          <BaseImage src={TreeTopImg} />
+          <Cane src={CaneImg} top={38} left={45} rotation={Math.floor(Math.random() * 50)}/>
+        </TreeTopContainer>
+        <TreeMidContainer
           zIndex={3}
-          animate={{
-            rotate: [0, -5, 5, -4, 0],
-            transition: { ease: "easeInOut", duration: 9, loop: Infinity }
-          }}
+          // animate={{
+          //   rotate: [0, -2, 3, -3, 0],
+          //   transition: { ease: "easeInOut", duration: 9, loop: Infinity },
+          // }}
           whileTap={{
             scale: 0.8,
-            transition: {duration: 0.1}
+            transition: { duration: 0.1 },
           }}
-        />
-        <TreeBottom
-          src={TreeBottomImg}
+          height={164}
+        >
+          <BaseImage src={TreeMidImg} />
+          <Cane src={CaneImg} top={44} left={63} rotation={Math.floor(Math.random() * 50)}/>
+        </TreeMidContainer>
+        <TreeBottomContainer
           zIndex={2}
-          animate={{
-            rotate: [0, -3, 6, -2, 0],
-            transition: { ease: "easeInOut", duration: 13, loop: Infinity }
-          }}
+          // animate={{
+          //   rotate: [0, -1, 3, -2, 0],
+          //   transition: { ease: "easeInOut", duration: 13, loop: Infinity },
+          // }}
           whileTap={{
             scale: 0.8,
-            transition: {duration: 0.1}
+            transition: { duration: 0.1 },
           }}
-        />
-        <TreeLog
-          src={TreeLogImg}
-          zIndex={1}
-        />
+          height={164}
+        >
+          <BaseImage src={TreeBottomImg} />
+          <Cane src={CaneImg} top={45} left={40} rotation={Math.floor(Math.random() * 50)}/>
+        </TreeBottomContainer>
+        <TreeLog src={TreeLogImg} zIndex={1} />
       </TreeContainer>
     </Layout>
   );
