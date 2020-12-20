@@ -1,3 +1,4 @@
+import React, {Component} from 'react';
 import styled from "styled-components";
 import StarImg from "./images/Star 1.svg";
 import TreeTopImg from "./images/colored-top-1.svg";
@@ -6,11 +7,10 @@ import TreeBottomImg from "./images/colored-bottom-1.svg";
 import TreeLogImg from "./images/colored-log-1.svg";
 import CaneImg from "./images/crane.svg";
 import { motion } from "framer-motion";
-
 const Layout = styled(motion.div)`
   height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  place-content: center;
   background-color: #17202a;
 `;
 const TreeContainer = styled(motion.div)`
@@ -30,7 +30,7 @@ const TreeContainer = styled(motion.div)`
   }
 `;
 const Star = styled(motion.img)`
-  margin-top: 30px;
+  margin-top: 15%;
   z-index: ${(props) => props.zIndex};
 `;
 const TreeTopContainer = styled(motion.div)`
@@ -63,67 +63,157 @@ const Cane = styled(motion.img)`
   transform: rotate(${props => props.rotation}deg);
   width: 20px;
 `;
-function App() {
-  return (
-    <Layout>
-      <TreeContainer>
-        <Star
-          src={StarImg}
-          zIndex={5}
-          whileTap={{
-            scale: 0.8,
-            transition: { duration: 0.1 },
-          }}
-        />
-        <TreeTopContainer
-          zIndex={4}
-          // animate={{
-          //   rotate: [0, -3, 2, -2, 0],
-          //   transition: { ease: "easeInOut", duration: 9, loop: Infinity },
-          // }}
-          whileTap={{
-            scale: 0.8,
-            transition: { duration: 0.1 },
-          }}
-          height={135}
-        >
-          <BaseImage src={TreeTopImg} />
-          <Cane src={CaneImg} top={38} left={45} rotation={Math.floor(Math.random() * 50)}/>
-        </TreeTopContainer>
-        <TreeMidContainer
-          zIndex={3}
-          // animate={{
-          //   rotate: [0, -2, 3, -3, 0],
-          //   transition: { ease: "easeInOut", duration: 9, loop: Infinity },
-          // }}
-          whileTap={{
-            scale: 0.8,
-            transition: { duration: 0.1 },
-          }}
-          height={164}
-        >
-          <BaseImage src={TreeMidImg} />
-          <Cane src={CaneImg} top={44} left={63} rotation={Math.floor(Math.random() * 50)}/>
-        </TreeMidContainer>
-        <TreeBottomContainer
-          zIndex={2}
-          // animate={{
-          //   rotate: [0, -1, 3, -2, 0],
-          //   transition: { ease: "easeInOut", duration: 13, loop: Infinity },
-          // }}
-          whileTap={{
-            scale: 0.8,
-            transition: { duration: 0.1 },
-          }}
-          height={164}
-        >
-          <BaseImage src={TreeBottomImg} />
-          <Cane src={CaneImg} top={45} left={40} rotation={Math.floor(Math.random() * 50)}/>
-        </TreeBottomContainer>
-        <TreeLog src={TreeLogImg} zIndex={1} />
-      </TreeContainer>
-    </Layout>
-  );
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+`;
+const DateInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const NumberContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const Number = styled.span`
+  border-radius: 7px;
+  background-color: #243D5A;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #efefef;
+  font-size: 45px;
+  padding: 10px;
+  margin: 5px;
+`;
+const style = {
+  title: {
+    fontWeight: "bold",
+    color: "#eee",
+    fontSize: 35,
+  },
+  desc: {
+    fontWeight: "bold",
+    color: "#ccc",
+    fontSize: 24,
+  }
 }
+class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      targetDate: new Date('2020-12-25T00:00:00'),
+      day: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
+  }
+  updateCountDownTime = () => {
+    let currentDate = new Date();
+    let sec = parseInt((this.state.targetDate - currentDate)/1000);
+    let day =     parseInt(sec / 86400).toString().padStart(2,'0');
+    let hours =   parseInt((sec % 86400) / 3600).toString().padStart(2,'0');
+    let minutes = parseInt(((sec % 86400) % 3600) / 60).toString().padStart(2,'0');
+    let seconds = parseInt(((sec % 86400) % 3600) % 60 % 60).toString().padStart(2,'0');
+    this.setState({day, hours, minutes, seconds});
+  }
+  componentDidMount(){
+    setInterval(this.updateCountDownTime, 1000);
+  }
+  render(){
+    return <Layout>
+    <TreeContainer>
+      <Star
+        src={StarImg}
+        zIndex={5}
+        whileTap={{
+          scale: 0.8,
+          transition: { duration: 0.1 },
+        }}
+      />
+      <TreeTopContainer
+        zIndex={4}
+        animate={{
+          rotate: [0, -3, 2, -2, 0],
+          transition: { ease: "easeInOut", duration: 9, loop: Infinity },
+        }}
+        whileTap={{
+          scale: 0.8,
+          transition: { duration: 0.1 },
+        }}
+        height={135}
+      >
+        <BaseImage src={TreeTopImg} />
+        <Cane src={CaneImg} top={38} left={45} rotation={-13}/>
+      </TreeTopContainer>
+      <TreeMidContainer
+        zIndex={3}
+        animate={{
+          rotate: [0, -2, 3, -3, 0],
+          transition: { ease: "easeInOut", duration: 9, loop: Infinity },
+        }}
+        whileTap={{
+          scale: 0.8,
+          transition: { duration: 0.1 },
+        }}
+        height={164}
+      >
+        <BaseImage src={TreeMidImg} />
+        <Cane src={CaneImg} top={44} left={53} rotation={20}/>
+      </TreeMidContainer>
+      <TreeBottomContainer
+        zIndex={2}
+        animate={{
+          rotate: [0, -1, 3, -2, 0],
+          transition: { ease: "easeInOut", duration: 13, loop: Infinity },
+        }}
+        whileTap={{
+          scale: 0.8,
+          transition: { duration: 0.1 },
+        }}
+        height={164}
+      >
+        <BaseImage src={TreeBottomImg} />
+        <Cane src={CaneImg} top={45} left={40} rotation={30}/>
+      </TreeBottomContainer>
+      <TreeLog src={TreeLogImg} zIndex={1} />
+    </TreeContainer>
+    <InfoContainer>
+      <span style={style.title}>Christmas is coming!</span>
+     <DateInfo>
+       <NumberContainer>
+         <Number>{this.state.day}</Number>
+         <span style={style.desc}>DAY</span>
+       </NumberContainer>
+       <NumberContainer>
+         <Number>{this.state.hours}</Number>
+         <span style={style.desc}>HR</span>
+       </NumberContainer>
+       <NumberContainer>
+         <Number>{this.state.minutes}</Number>
+         <span style={style.desc}>MIN</span>
+       </NumberContainer>
+       <NumberContainer>
+         <Number>{this.state.seconds}</Number>
+         <span style={style.desc}>SEC</span>
+       </NumberContainer>
+     </DateInfo>
+    </InfoContainer>
+  </Layout>;
+  }
+}
+
 
 export default App;
