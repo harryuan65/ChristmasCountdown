@@ -10,7 +10,8 @@ import { motion } from "framer-motion";
 const Layout = styled(motion.div)`
   height: 100vh;
   display: flex;
-  place-content: center;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: #17202a;
 `;
 const TreeContainer = styled(motion.div)`
@@ -92,20 +93,19 @@ const Number = styled.span`
   justify-content: center;
   align-items: center;
   color: #efefef;
-  font-size: 45px;
+  font-size: 55px;
   padding: 10px;
   margin: 5px;
 `;
 const style = {
   title: {
-    fontWeight: "bold",
     color: "#eee",
-    fontSize: 35,
+    fontSize: 55,
   },
   desc: {
     fontWeight: "bold",
     color: "#ccc",
-    fontSize: 24,
+    fontSize: 30,
   }
 }
 class App extends Component {
