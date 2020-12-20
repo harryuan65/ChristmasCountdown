@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.54524237.chunk.css",
+    "main.js": "/static/js/main.aae2ac6c.chunk.js",
+    "main.js.map": "/static/js/main.aae2ac6c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.17fd2c4f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.17fd2c4f.js.map",
+    "static/js/2.bf1aeb41.chunk.js": "/static/js/2.bf1aeb41.chunk.js",
+    "static/js/2.bf1aeb41.chunk.js.map": "/static/js/2.bf1aeb41.chunk.js.map",
+    "static/js/3.fb3d8c83.chunk.js": "/static/js/3.fb3d8c83.chunk.js",
+    "static/js/3.fb3d8c83.chunk.js.map": "/static/js/3.fb3d8c83.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.54524237.chunk.css.map": "/static/css/main.54524237.chunk.css.map",
+    "static/js/2.bf1aeb41.chunk.js.LICENSE.txt": "/static/js/2.bf1aeb41.chunk.js.LICENSE.txt",
+    "static/media/Star 1.b3515b66.svg": "/static/media/Star 1.b3515b66.svg",
+    "static/media/colored-bottom-1.c489e371.svg": "/static/media/colored-bottom-1.c489e371.svg",
+    "static/media/colored-log-1.5b620cd4.svg": "/static/media/colored-log-1.5b620cd4.svg",
+    "static/media/colored-mid-1.ef4ea341.svg": "/static/media/colored-mid-1.ef4ea341.svg",
+    "static/media/colored-top-1.e7320a3d.svg": "/static/media/colored-top-1.e7320a3d.svg",
+    "static/media/crane.a2348474.svg": "/static/media/crane.a2348474.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.17fd2c4f.js",
+    "static/js/2.bf1aeb41.chunk.js",
+    "static/css/main.54524237.chunk.css",
+    "static/js/main.aae2ac6c.chunk.js"
+  ]
+}
