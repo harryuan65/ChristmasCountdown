@@ -12,7 +12,11 @@ const Layout = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #17202a;
+  overflow: visible;
+  @media screen and (max-width: 768px){
+    height: 100%;
+    flex-direction: column;
+  }
 `;
 const TreeContainer = styled(motion.div)`
   display: flex;
@@ -71,6 +75,9 @@ const InfoContainer = styled.div`
   align-items: center;
   span{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  @media screen and (max-width: 768px){
+    height: 300px;
   }
 `;
 const DateInfo = styled.div`
